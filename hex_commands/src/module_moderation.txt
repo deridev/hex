@@ -1,0 +1,5 @@
+CommandTypes: "KickMember"|"BanMember"
+
+Data:
+KickMemberData = { user_id: u64, reason: string }
+BanMemberData = { user_id: u64, reason: string }

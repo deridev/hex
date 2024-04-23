@@ -1,0 +1,15 @@
+[package]
+name = "hex_data"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hex_discord = { path = "../hex_discord" }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+rand = { workspace = true }
+once_cell = { workspace = true }
+unidecode = "0.3"

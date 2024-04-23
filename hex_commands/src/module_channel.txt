@@ -1,0 +1,40 @@
+CommandTypes: "GetChannelList"|"GetChannel"|"DeleteChannel"|"CreateChannel"|"EditChannel"
+
+// Use SearchChannel when you know EXACTLY which channel you are looking for, use GetChannelList if you want to verify multiple channels in the guild. For example, if you want to check if a channel for gaming exists, use GetChannelList and not GetChannel.
+// but, if you have a channel ID, then you can get this specific channel.
+Data:
+GetChannelData = { namefilter: string|null, idfilter: u64|null } -> Channel|undefined
+GetChannelListData = undefined -> [Channel]
+typeof CreateChannelData = { 
+    channel_name: string, 
+    topic: string, 
+    category?: string, 
+    is_category: bool 
+} // is is_category is true, `category` is null.
+DeleteChannelData = { channel_id: u64 } // NEVER delete useful channels. NEVER delete channels that are used by the server.
+EditChannelData = { channel_id: u64, name: string, topic: string, category?: string }
+
+Channel = { id, name, topic, category?, kind: "Chat"|"Category" }
+Category channels can only create subchannels. Update categories like regular channels. 
+
+Example of cmd for creating a category "Fun":
+{
+    "type": "CreateChannel",
+    "data": {
+        "channel_name": "Fun",
+        "topic": "<Unused for categories>",
+        "category": null,
+        "is_category": true
+    }
+}
+
+And for creating a chat "memes":
+{
+    "type": "CreateChannel",
+    "data": {
+        "channel_name": "memes",
+        "topic": "A channel for sharing funny memes.",
+        "category": "Fun",
+        "is_category": false
+    }
+}

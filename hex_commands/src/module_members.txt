@@ -1,0 +1,10 @@
+CommandTypes: "GetMemberData"|"GetAllMembersData"|"AddNote"
+
+// Use GetMemberData when you know EXACTLY which member you are looking for, use GetAllMembersData if you want to verify multiple members in the guild or don't have the specific member's details.
+Data:
+GetMemberData = { namefilter: string|null, idfilter: u64|null } -> Member|undefined
+GetAllMembersData = undefined -> [Member]
+AddNoteData = { member_id: u64, note: string }
+
+Member = { id, display_name, username, karma, notes } 
+// Notes is metainformation that you can store in a member for future use. For example, you can store the user's favorite color, or the user's favorite game. Or store a note explaining why the user is bad.
